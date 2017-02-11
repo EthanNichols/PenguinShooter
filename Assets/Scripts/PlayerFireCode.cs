@@ -10,10 +10,12 @@ public class PlayerFireCode : MonoBehaviour
     public GameObject bullet;
     float fireRate = .5f;
     float nextFire = 0f;
+
+    private bool left = false;
+
     // Use this for initialization
     void Start()
     {
-
 
     }
 
@@ -25,18 +27,30 @@ public class PlayerFireCode : MonoBehaviour
         {
             fireRocket();
         }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            left = true;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            left = false;
+        }
     }
     void fireRocket()
     {
         if (Time.time > nextFire)
         {
             //removes next once facing direction is implemented
+
             Instantiate(bullet, -gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
-            
+
+
             nextFire = Time.time + fireRate;
             //needs to add method detecting if it is facing right or left
 
             //added for facing direction
+
             //if(facingRight){
             /*Instantiate(bullet, gunTip.position, Quaternian.Euler(new Vector3 (0,0,0)));
              * }
@@ -44,6 +58,17 @@ public class PlayerFireCode : MonoBehaviour
              * else if(!facingright){
              * Instnatiate(bullet, -guntip.Position, Quernion.Euler(new Vector3 (0,0,180f)));
              **/
+
+            if (left)
+            {
+                Instantiate(bullet, new Vector3(gunTip.position.x - 1, gunTip.position.y), Quaternion.Euler(new Vector3(0, 0, 180)));
+            }
+
+            else if (!left)
+            {
+                Instantiate(bullet, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+            }
+
         }
     }
 }
