@@ -5,65 +5,95 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour {
 
     public float speed;
+    public float maxSpeed;
+    public float jumpHeight;
     public float friction;
-    public float jump;
+    public float gravity;
 
-    public Vector3 movement;
-    private bool jumping = false;
+    private Vector2 movement;
 
-    Dictionary<KeyCode, Vector3> moves = new Dictionary<KeyCode, Vector3>();
+    private playerState state = playerState.standing;
 
-	// Use this for initialization
-	void Start () {
-        moves.Add(KeyCode.A, new Vector3(-1, 0));
-        moves.Add(KeyCode.D, new Vector3(1, 0));
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        testMovement();
-        slowDown();
-        move();
-	}
-
-    private void testMovement()
+    void Start()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space) && !jumping)
+    }
+
+    void FixedUpdate()
+    {
+        if (state == playerState.standing && Input.GetKey(KeyCode.Space))
         {
-            movement += new Vector3(movement.x, jump, 0);
-            jumping = true;
+            movement = new Vector2(0, jumpHeight);
+            state = playerState.jumping;
         }
-
-        foreach (KeyValuePair<KeyCode, Vector3> move in moves)
-        { 
-            if (Input.GetKey(move.Key))
-            {
-                movement += (move.Value * speed) * Time.deltaTime;
-            }
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject)
+        if (state == playerState.jumping)
         {
-            jumping = false;
-        }
-    }
-
-    private void slowDown()
-    {
-        movement = movement / friction;
-
-        if (jumping)
+            playerFall();
+        } else
         {
-            movement -= new Vector3(0, 1);
+            playerFriction();
+        }
+
+        playerInput();
+        maximumSpeed();
+
+        playerMove();
+    }
+
+    private void playerInput()
+    {
+        if (Input.GetKey("a"))
+        {
+            movement.x -= speed;
+        } else if (Input.GetKey("d"))
+        {
+            movement.x += speed;
         }
     }
 
-    private void move()
+    private void playerMove()
     {
-        transform.position += movement * Time.deltaTime;
+        transform.Translate(movement * Time.deltaTime);
+    }
+
+    private void playerFall()
+    {
+        movement.y -= gravity * Time.deltaTime;
+    }
+
+    private void playerFriction()
+    {
+        if (movement.x < 1 &&
+        movement.x > 1)
+        {
+            movement.x = 0;
+        }
+
+        movement.x /= friction;
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        state = playerState.standing;
+        movement = new Vector2(movement.x, 0);
+    }
+
+    private void maximumSpeed()
+    {
+        if (movement.x < -maxSpeed)
+        {
+            movement.x = -maxSpeed;
+        }
+
+        if (movement.x > maxSpeed)
+        {
+            movement.x = maxSpeed;
+        }
+    }
+
+    private enum playerState
+    {
+        standing,
+        jumping
     }
 }
