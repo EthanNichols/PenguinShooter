@@ -31,7 +31,8 @@ public class PlayerFireCode : MonoBehaviour
         if (Time.time > nextFire)
         {
             //removes next once facing direction is implemented
-            Instantiate(bullet, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+            Instantiate(bullet, -gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+            
             nextFire = Time.time + fireRate;
             //needs to add method detecting if it is facing right or left
 
@@ -41,7 +42,7 @@ public class PlayerFireCode : MonoBehaviour
              * }
              * 
              * else if(!facingright){
-             * Instnatiate(bullet, guntip.Position, Quernion.Euler(new Vector3 (0,0,180f)));
+             * Instnatiate(bullet, -guntip.Position, Quernion.Euler(new Vector3 (0,0,180f)));
              **/
         }
     }
