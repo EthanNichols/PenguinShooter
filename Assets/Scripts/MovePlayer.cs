@@ -15,6 +15,7 @@ public class MovePlayer : MonoBehaviour {
     public float friction;
     public float gravity;
 
+    public int playerNum;
     public KeyCode Ileft;
     public KeyCode Iright;
     public KeyCode Ijump;
@@ -128,11 +129,13 @@ public class MovePlayer : MonoBehaviour {
             {
                 GameObject arrow = Instantiate(bullet, new Vector3(transform.position.x - 1, transform.position.y), Quaternion.Euler(new Vector3(0, 0, 180)));
                 arrow.GetComponent<ProjectileController>().rocketSpeed *= -1;
+                arrow.GetComponent<ProjectileController>().player = playerNum;
             }
 
             else if (!left)
             {
-                Instantiate(bullet, new Vector3(transform.position.x + 1, transform.position.y), Quaternion.Euler(new Vector3(0, 0, 0)));
+                GameObject arrow = Instantiate(bullet, new Vector3(transform.position.x + 1, transform.position.y), Quaternion.Euler(new Vector3(0, 0, 0)));
+                arrow.GetComponent<ProjectileController>().player = playerNum;
             }
 
             nextFire = 0;
