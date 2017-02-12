@@ -127,14 +127,14 @@ public class MovePlayer : MonoBehaviour {
         {
             if (left)
             {
-                GameObject arrow = Instantiate(bullet, new Vector3(transform.position.x - 1, transform.position.y), Quaternion.Euler(new Vector3(0, 0, 180)));
+                GameObject arrow = Instantiate(bullet, new Vector3(transform.position.x - 1.4f, transform.position.y), Quaternion.Euler(new Vector3(0, 0, 180)));
                 arrow.GetComponent<ProjectileController>().rocketSpeed *= -1;
                 arrow.GetComponent<ProjectileController>().player = playerNum;
             }
 
             else if (!left)
             {
-                GameObject arrow = Instantiate(bullet, new Vector3(transform.position.x + 1, transform.position.y), Quaternion.Euler(new Vector3(0, 0, 0)));
+                GameObject arrow = Instantiate(bullet, new Vector3(transform.position.x + 1.4f, transform.position.y), Quaternion.Euler(new Vector3(0, 0, 0)));
                 arrow.GetComponent<ProjectileController>().player = playerNum;
             }
 
@@ -161,9 +161,9 @@ public class MovePlayer : MonoBehaviour {
         //Set that the play is standing
         //Make the player stop falling and stay on the platform
         state = playerState.standing;
-        movement = new Vector2(movement.x, 0);
+        movement = new Vector2(movement.x * (friction * 2), 0);
 
-        if (col.transform.tag == "Arrow" && respawnTimer == 0)
+        if (col.transform.tag == "Arrow" && col.gameObject.GetComponent<ProjectileController>().player != playerNum && respawnTimer == 0)
         {
             transform.position = new Vector3(-1000, 0);
             respawnTimer = 3;

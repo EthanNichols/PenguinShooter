@@ -18,12 +18,14 @@ public class DestroyedProjectile : MonoBehaviour {
     {
 		
 	}
-    void OnCollisionEnter2D()
+    void OnCollisionEnter2D(Collision2D col)
     {
        Debug.Log("Collision");
 
-
-        Invoke("destroyProjectile", .1f);
+        if (col.gameObject.GetComponent<MovePlayer>().playerNum != GetComponent<ProjectileController>().player)
+        {
+            Invoke("destroyProjectile", .1f);
+        }
     }
     void destroyProjectile()
     {
