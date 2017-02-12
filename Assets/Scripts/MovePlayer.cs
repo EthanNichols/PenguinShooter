@@ -29,6 +29,7 @@ public class MovePlayer : MonoBehaviour {
     //The movement (velocity) of the player
     private Vector2 movement;
     private bool left;
+    private float respawnTimer;
 
     //The state that the player is in
     private playerState state = playerState.standing;
@@ -65,6 +66,7 @@ public class MovePlayer : MonoBehaviour {
         playerInput();
         maximumSpeed();
         playerMove();
+        respawn();
     }
 
     private void playerInput()
@@ -102,6 +104,20 @@ public class MovePlayer : MonoBehaviour {
     {
         //Make the player fall relative to the gravity modifier
         movement.y -= gravity * Time.deltaTime;
+    }
+
+    private void respawn()
+    {
+        if (respawnTimer > 0)
+        {
+            respawnTimer -= Time.deltaTime;
+        }
+
+        if (respawnTimer < 0)
+        {
+            respawnTimer = 0;
+            transform.position = new Vector3(0, 0);
+        }
     }
 
     private void fireArrow()
@@ -143,6 +159,12 @@ public class MovePlayer : MonoBehaviour {
         //Make the player stop falling and stay on the platform
         state = playerState.standing;
         movement = new Vector2(movement.x, 0);
+
+        if (col.transform.tag == "Arrow" && respawnTimer == 0)
+        {
+            transform.position = new Vector3(-1000, 0);
+            respawnTimer = 3;
+        }
     }
 
     private void maximumSpeed()
