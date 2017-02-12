@@ -15,6 +15,11 @@ public class MovePlayer : MonoBehaviour {
     public float friction;
     public float gravity;
 
+    public KeyCode Ileft;
+    public KeyCode Iright;
+    public KeyCode Ijump;
+    public KeyCode Ifire;
+
     public Transform gunTip;
     public GameObject bullet;
 
@@ -37,7 +42,7 @@ public class MovePlayer : MonoBehaviour {
     {
         //Check if the player is testing and pressed the jump button
         //Make the player jump and change the state of the player to jumping
-        if (state != playerState.jumping && Input.GetKey(KeyCode.Space))
+        if (state != playerState.jumping && Input.GetKey(Ijump))
         {
             movement = new Vector2(0, jumpHeight);
             state = playerState.jumping;
@@ -66,7 +71,7 @@ public class MovePlayer : MonoBehaviour {
     {
         //Test for the 'A' key
         //Move the player to the left
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(Ileft))
         {
             movement.x -= speed;
             left = true;
@@ -74,16 +79,17 @@ public class MovePlayer : MonoBehaviour {
         //Test for the 'D' key
         //Move the player to the right
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(Iright))
         {
             movement.x += speed;
             left = false;
         }
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(Ifire))
         {
             fireArrow();
         }
+        nextFire += Time.deltaTime;
     }
 
     private void playerMove()
@@ -104,19 +110,17 @@ public class MovePlayer : MonoBehaviour {
         {
             if (left)
             {
-                GameObject arrow = Instantiate(bullet, new Vector3(gunTip.position.x - 1, gunTip.position.y), Quaternion.Euler(new Vector3(0, 0, 180)));
+                GameObject arrow = Instantiate(bullet, new Vector3(transform.position.x - 1, transform.position.y), Quaternion.Euler(new Vector3(0, 0, 180)));
                 arrow.GetComponent<ProjectileController>().rocketSpeed *= -1;
             }
 
             else if (!left)
             {
-                Instantiate(bullet, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+                Instantiate(bullet, new Vector3(transform.position.x + 1, transform.position.y), Quaternion.Euler(new Vector3(0, 0, 0)));
             }
 
             nextFire = 0;
         }
-
-        nextFire += Time.deltaTime;
     }
 
     private void playerFriction()
