@@ -31,7 +31,8 @@ public class PlayerFireCode : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             left = true;
-        } else if (Input.GetKey(KeyCode.D))
+        }
+        else if (Input.GetKey(KeyCode.D))
         {
             left = false;
         }
@@ -41,10 +42,23 @@ public class PlayerFireCode : MonoBehaviour
         if (Time.time > nextFire)
         {
             //removes next once facing direction is implemented
+
+            Instantiate(bullet, -gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+
+
             nextFire = Time.time + fireRate;
             //needs to add method detecting if it is facing right or left
 
             //added for facing direction
+
+            //if(facingRight){
+            /*Instantiate(bullet, gunTip.position, Quaternian.Euler(new Vector3 (0,0,0)));
+             * }
+             * 
+             * else if(!facingright){
+             * Instnatiate(bullet, -guntip.Position, Quernion.Euler(new Vector3 (0,0,180f)));
+             **/
+
             if (left)
             {
                 GameObject arrow = Instantiate(bullet, new Vector3(gunTip.position.x - 1, gunTip.position.y), Quaternion.Euler(new Vector3(0, 0, 180)));
@@ -55,6 +69,7 @@ public class PlayerFireCode : MonoBehaviour
             {
                 Instantiate(bullet, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
             }
+
         }
     }
 }
