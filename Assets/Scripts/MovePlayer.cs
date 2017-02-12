@@ -78,14 +78,16 @@ public class MovePlayer : MonoBehaviour {
         {
             movement.x -= speed;
             left = true;
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
 
-        //Test for the 'D' key
-        //Move the player to the right
+            //Test for the 'D' key
+            //Move the player to the right
         }
         else if (Input.GetKey(Iright))
         {
             movement.x += speed;
             left = false;
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
 
         if (Input.GetKey(Ifire))

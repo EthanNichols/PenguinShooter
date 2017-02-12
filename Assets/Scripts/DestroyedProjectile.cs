@@ -20,19 +20,7 @@ public class DestroyedProjectile : MonoBehaviour {
 	}
     void OnCollisionEnter2D(Collision2D col)
     {
-       Debug.Log("Collision");
-
-        if (col.gameObject.GetComponent<MovePlayer>().playerNum != GetComponent<ProjectileController>().player)
-        {
-            Invoke("destroyProjectile", .1f);
-        }
-    }
-    void destroyProjectile()
-    {
         Destroy(gameObject);
-    }
-    
-    
-      
-    }
+    }      
+}
 

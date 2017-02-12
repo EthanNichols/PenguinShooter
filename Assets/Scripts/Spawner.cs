@@ -38,6 +38,12 @@ public class Spawner : MonoBehaviour {
             GameObject fish = Instantiate(Enemy, start.position, Quaternion.Euler(new Vector3(0, 0, 0)));
             fish.GetComponent<FishMovement>().direction = spawnDirection;
             fish.transform.SetParent(parent.transform);
+
+            if(spawnDirection == 1)
+            {
+                fish.GetComponent<SpriteRenderer>().flipX = true;
+            }
+
             currentSpawn = 0;
             rateOfSpawn = Random.Range(5, 10);
         }

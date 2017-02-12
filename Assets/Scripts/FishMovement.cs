@@ -29,16 +29,23 @@ public class FishMovement : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        int player = col.gameObject.GetComponent<ProjectileController>().player;
+        try
+        {
+            int player = col.gameObject.GetComponent<ProjectileController>().player;
 
-        if (player == 1)
+            if (player == 1)
+            {
+                GetComponentInParent<GameManager>().player1Collected++;
+                Destroy(gameObject);
+            }
+            else if (player == 2)
+            {
+                GetComponentInParent<GameManager>().player2Collected++;
+                Destroy(gameObject);
+            }
+        }
+        catch (System.Exception)
         {
-            GetComponentInParent<GameManager>().player1Collected++;
-            Destroy(gameObject);
-        } else if (player == 2)
-        {
-            GetComponentInParent<GameManager>().player2Collected++;
-            Destroy(gameObject);
         }
     }
 }
