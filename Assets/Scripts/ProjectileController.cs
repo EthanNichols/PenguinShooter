@@ -10,7 +10,7 @@ public class ProjectileController : MonoBehaviour {
   
 
 	// Use this for initialization
-	void Awake ()
+	void Start()
     {
         //allows reference to rigidbody
         projectileRB = GetComponent<Rigidbody2D>();

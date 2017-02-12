@@ -47,7 +47,8 @@ public class PlayerFireCode : MonoBehaviour
             //added for facing direction
             if (left)
             {
-                Instantiate(bullet, new Vector3(gunTip.position.x - 1, gunTip.position.y), Quaternion.Euler(new Vector3(0, 0, 180)));
+                GameObject arrow = Instantiate(bullet, new Vector3(gunTip.position.x - 1, gunTip.position.y), Quaternion.Euler(new Vector3(0, 0, 180)));
+                arrow.GetComponent<ProjectileController>().rocketSpeed *= -1;
             }
 
             else if (!left)
