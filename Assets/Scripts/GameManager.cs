@@ -25,7 +25,18 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         player1Info.text = "Player 1:\nCollected Score: " + player1Collected + "\nTotal Score: " + player1Score;
         player2Info.text = "Player 2:\nCollected Score: " + player2Collected + "\nTotal Score: " + player2Score;
+    }
 
-        player1Score++;
+    public void CollectScore(int player)
+    {
+        if (player == 1)
+        {
+            player1Score += player1Collected;
+            player1Collected = 0;
+        } else if (player == 2)
+        {
+            player2Score += player2Collected;
+            player2Collected = 0;
+        }
     }
 }

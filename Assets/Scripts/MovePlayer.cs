@@ -167,6 +167,16 @@ public class MovePlayer : MonoBehaviour {
         {
             transform.position = new Vector3(-1000, 0);
             respawnTimer = 3;
+
+            if (col.gameObject.GetComponent<ProjectileController>().player == 1)
+            {
+                GetComponentInParent<GameManager>().player1Collected = 0;
+                GetComponentInParent<GameManager>().CollectScore(2);
+            } else if (col.gameObject.GetComponent<ProjectileController>().player == 2)
+            {
+                GetComponentInParent<GameManager>().player2Collected = 0;
+                GetComponentInParent<GameManager>().CollectScore(1);
+            }
         }
     }
 
