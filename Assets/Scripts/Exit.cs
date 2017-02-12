@@ -9,5 +9,11 @@ public class Exit : MonoBehaviour
     {
         SceneManager.LoadScene(newGamelevel);
     }
+    public void EndGame()
+    {
+        
+        Application.Quit();
+   
+    }
 	
 }
