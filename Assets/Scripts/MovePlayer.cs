@@ -15,8 +15,20 @@ public class MovePlayer : MonoBehaviour {
     public float friction;
     public float gravity;
 
+    public KeyCode Ileft;
+    public KeyCode Iright;
+    public KeyCode Ijump;
+    public KeyCode Ifire;
+
+    public Transform gunTip;
+    public GameObject bullet;
+
+    private float fireRate = .5f;
+    private float nextFire = 0f;
+
     //The movement (velocity) of the player
     private Vector2 movement;
+    private bool left;
 
     //The state that the player is in
     private playerState state = playerState.standing;
@@ -30,7 +42,7 @@ public class MovePlayer : MonoBehaviour {
     {
         //Check if the player is testing and pressed the jump button
         //Make the player jump and change the state of the player to jumping
-        if (state == playerState.standing && Input.GetKey(KeyCode.Space))
+        if (state != playerState.jumping && Input.GetKey(Ijump))
         {
             movement = new Vector2(0, jumpHeight);
             state = playerState.jumping;
@@ -59,17 +71,25 @@ public class MovePlayer : MonoBehaviour {
     {
         //Test for the 'A' key
         //Move the player to the left
-        if (Input.GetKey("a"))
+        if (Input.GetKey(Ileft))
         {
             movement.x -= speed;
+            left = true;
 
         //Test for the 'D' key
         //Move the player to the right
         }
-        else if (Input.GetKey("d"))
+        else if (Input.GetKey(Iright))
         {
             movement.x += speed;
+            left = false;
         }
+
+        if (Input.GetKey(Ifire))
+        {
+            fireArrow();
+        }
+        nextFire += Time.deltaTime;
     }
 
     private void playerMove()
@@ -82,6 +102,25 @@ public class MovePlayer : MonoBehaviour {
     {
         //Make the player fall relative to the gravity modifier
         movement.y -= gravity * Time.deltaTime;
+    }
+
+    private void fireArrow()
+    {
+        if (fireRate < nextFire)
+        {
+            if (left)
+            {
+                GameObject arrow = Instantiate(bullet, new Vector3(transform.position.x - 1, transform.position.y), Quaternion.Euler(new Vector3(0, 0, 180)));
+                arrow.GetComponent<ProjectileController>().rocketSpeed *= -1;
+            }
+
+            else if (!left)
+            {
+                Instantiate(bullet, new Vector3(transform.position.x + 1, transform.position.y), Quaternion.Euler(new Vector3(0, 0, 0)));
+            }
+
+            nextFire = 0;
+        }
     }
 
     private void playerFriction()
