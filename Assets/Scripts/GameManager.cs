@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 
     public Text player1Info;
     public Text player2Info;
+    public GameObject whoWon;
 
 	// Use this for initialization
 	void Start () {
@@ -25,8 +26,18 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         player1Info.text = "Player 1:\nCollected Score: " + player1Collected + "\nTotal Score: " + player1Score;
         player2Info.text = "Player 2:\nCollected Score: " + player2Collected + "\nTotal Score: " + player2Score;
-    }
 
+        if (player1Score >= 10)
+        {
+            whoWon.GetComponent<Text>().text = "Player1 Won!";
+            whoWon.SetActive(true);
+        } else if (player2Score >= 10)
+        {
+            whoWon.GetComponent<Text>().text = "Player2 Won!";
+            whoWon.SetActive(true);
+        }
+    }
+   
     public void CollectScore(int player)
     {
         if (player == 1)

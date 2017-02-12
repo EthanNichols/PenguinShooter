@@ -7,7 +7,7 @@ public class Exit : MonoBehaviour
 {
     public void NewGameBtn(string newGamelevel)
     {
-        SceneManager.LoadScene(newGamelevel);
+        SceneManager.LoadSceneAsync(newGamelevel);
     }
     public void EndGame()
     {

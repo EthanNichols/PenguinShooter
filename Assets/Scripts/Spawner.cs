@@ -50,8 +50,8 @@ public class Spawner : MonoBehaviour {
 
         currentSpawn += Time.deltaTime;
 
-        if (transform.position.y > 13 ||
-        transform.position.y < -4)
+        if (transform.position.y > 6 ||
+        transform.position.y < -7)
         {
             moveDirection *= -1;
         }
