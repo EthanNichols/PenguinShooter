@@ -17,19 +17,43 @@ Platform assembly: C:\Users\chase\Documents\PenguinShooter\PenguinPalooza_Data\M
 Loading C:\Users\chase\Documents\PenguinShooter\PenguinPalooza_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\chase\Documents\PenguinShooter\PenguinPalooza_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
 Loading C:\Users\chase\Documents\PenguinShooter\PenguinPalooza_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-- Completed reload, in  0.038 seconds
+- Completed reload, in  0.167 seconds
 Platform assembly: C:\Users\chase\Documents\PenguinShooter\PenguinPalooza_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\chase\Documents\PenguinShooter\PenguinPalooza_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.150510 ms
+UnloadTime: 1.158379 ms
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.532235 ms
+UnloadTime: 5.424813 ms
 
-Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 706.
-Total: 0.268555 ms (FindLiveObjects: 0.036605 ms CreateObjectMapping: 0.016763 ms MarkObjects: 0.196370 ms  DeleteObjects: 0.010947 ms)
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 289.
+Total: 0.209028 ms (FindLiveObjects: 0.015052 ms CreateObjectMapping: 0.013342 ms MarkObjects: 0.164896 ms  DeleteObjects: 0.008894 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.294213 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 321.
+Total: 0.169001 ms (FindLiveObjects: 0.012658 ms CreateObjectMapping: 0.013342 ms MarkObjects: 0.139922 ms  DeleteObjects: 0.002736 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.498451 ms
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 276.
+Total: 0.155659 ms (FindLiveObjects: 0.011973 ms CreateObjectMapping: 0.013342 ms MarkObjects: 0.120764 ms  DeleteObjects: 0.009236 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.347582 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 321.
+Total: 0.203554 ms (FindLiveObjects: 0.025658 ms CreateObjectMapping: 0.013342 ms MarkObjects: 0.161133 ms  DeleteObjects: 0.002736 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.310292 ms
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 706.
+Total: 0.189185 ms (FindLiveObjects: 0.023263 ms CreateObjectMapping: 0.015394 ms MarkObjects: 0.141632 ms  DeleteObjects: 0.008894 ms)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 9d4 -> priority: 1 
+  Thread -> id: 29d0 -> priority: 1 
